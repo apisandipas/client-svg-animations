@@ -1,6 +1,12 @@
 svg {
     display: block;
-    /*border: 1px solid #fff;*/
+    padding-top: 2px;
+    border: 1px solid #fff;
+}
+
+
+path {
+    animation-fill-mode: 'forwards';
 }
 
 .panel {
