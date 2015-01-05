@@ -1,0 +1,10 @@
+{
+  "name": "feedvisor-svg-demo",
+  "version": "1.0.0",
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-rsync": "0.0.4",
+    "gulp-shell": "^0.2.10",
+    "gulp-load-plugins": "^0.7.0"
+  }
+}
