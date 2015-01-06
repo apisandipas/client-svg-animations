@@ -1,13 +1,9 @@
 svg {
     display: block;
     padding-top: 2px;
-    /*border: 1px solid #fff;*/
+    border: 1px solid #fff;
 }
 
-
-path {
-    animation-fill-mode: 'forwards';
-}
 
 .panel {
     width: 100vw;
@@ -22,5 +18,6 @@ path {
     left: 25vw;
 }
 
-.panel.rocket { background:   #09627e; }
+.panel.rocket { background:  #09627e; }
 .panel.gears { background:   #229c94; }
+.panel.chart { background:   #f77541; }

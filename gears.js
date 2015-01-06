@@ -26,6 +26,8 @@
             } else {
                 majorGear.stop();
                 minorGear.stop();
+                arrowMinor.stop();
+                arrowMajor.stop();
             }
         });
 
@@ -40,7 +42,7 @@
             var fromTransform = 'r0,' + rx + ',' + ry,
                 toTransform = 'r-360,' + rx + ',' + ry;
 
-            el.transform(fromTransform); // some kind of transform reset, or removing the previous completed transform maybe needed.
+            el.transform(fromTransform); 
             el.animate(
                 { transform: toTransform }, 
                 gearTimeout, 
@@ -61,7 +63,7 @@
             var fromTransform = 'r0,' + rx + ',' + ry,
                 toTransform = 'r360,' + rx + ',' + ry;
 
-            el.transform( fromTransform ); // some kind of transform reset, or removing the previous completed transform maybe needed.
+            el.transform( fromTransform ); 
             el.animate(
                 { transform: toTransform }, 
                 gearTimeout, 
