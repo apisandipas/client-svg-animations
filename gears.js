@@ -7,14 +7,16 @@
         // these selectors are used to detect when theyre els are 'inview'
         var $gearsEl = $('#gears');
 
-        var rootGearSvg     = Snap('#gears'),
-            minorGear       = rootGearSvg.select('#gear-minor'),
-            majorGear       = rootGearSvg.select('#gear-major'),
-            dottedPathMajor = rootGearSvg.select('#dotted-path-major'),
-            dottedPathMinor = rootGearSvg.select('#dotted-path-minor'),
-            arrowMajor      = rootGearSvg.select('#arrow-major'),
-            arrowMinor      = rootGearSvg.select('#arrow-minor')
-            // point = rootGearSvg.rect(166, 93, 1,1)
+        var rootGearSvg       = Snap('#gears'),
+            minorGear         = rootGearSvg.select('#gear-minor'),
+            majorGear         = rootGearSvg.select('#gear-major'),
+            dottedPathMajor   = rootGearSvg.select('#dotted-path-major'),
+            dottedPathMinor   = rootGearSvg.select('#dotted-path-minor'),
+            arrowMajor        = rootGearSvg.select('#arrow-major'),
+            arrowMinor        = rootGearSvg.select('#arrow-minor'),
+            animationComplete = false,
+            dottedLineMajor,
+            dottedLineMinor
         ;
 
         var gearEasingFn = mina.linear;
@@ -22,12 +24,16 @@
 
         $gearsEl.bind('inview', function(event, visible){
             if (visible == true) {
-                animateGears();
+
+                if ( ! animationComplete ) {
+
+                    animateGears(function(){
+                        animationComplete = true;
+                    });
+                }
+               
             } else {
-                majorGear.stop();
-                minorGear.stop();
-                arrowMinor.stop();
-                arrowMajor.stop();
+                // animation only fires once then turns continously thereafter.
             }
         });
 
@@ -103,6 +109,17 @@
             );
         }
 
+
+        function resetDottedPath ( el ){
+            el.attr({
+                strokeWidth: 0,
+                stroke: "rgba(0,0,0,0)", // makes the actual path invisible.
+                fill: 0,
+                fillOpacity: 0,
+            });
+        }
+
+
         function drawDottedPath( el , transform ) {
             el.attr({
                 strokeWidth: 0,
@@ -146,10 +163,11 @@
                     console.log('anim done!');
                 }
             );
+
         }
 
 
-        function animateGears(){
+        function animateGears( cb ){
    
             counterClockwise( minorGear , 70, 70 );
             clockwise( majorGear, 166, 93 );
@@ -158,7 +176,11 @@
             moveArrow( arrowMinor, dottedPathMinor , 110, 10, true);
             moveArrow( arrowMajor, dottedPathMajor , 127, 22);
 
+            if ( cb ) cb();
         };
+
+
+       
 
     });
 
