@@ -1,10 +1,10 @@
-(function(window, $, Snap){
+;(function(window, $, Snap){
     'use strict';
  
 
     $(function(){
 
-        // these selectors are used to detect when theyre els are 'inview'
+         // jQuery reference to root SVG element
         var $gearsEl = $('#gears');
 
         var rootGearSvg       = Snap('#gears'),
@@ -105,7 +105,7 @@
                     
                 },
                 4500,
-                mina.easeout
+                mina.easeinout
             );
         }
 
@@ -158,7 +158,7 @@
                     });
                 },
                 4575, //duration
-                mina.easeout, //easing
+                mina.easeinout, //easing
                 function(){
                     console.log('anim done!');
                 }

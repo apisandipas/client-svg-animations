@@ -1,10 +1,9 @@
-(function(window, $, Snap){
+;(function(window, $, Snap){
     'use strict';
  
-
     $(function(){
 
-        // these selectors are used to detect when theyre els are 'inview'
+         // jQuery reference to root SVG element
         var $chartEl = $('#chart-svg');
 
         var rootChartSvg = Snap('#chart-svg'),
@@ -33,7 +32,7 @@
             1500,
             2000,
         ],
-        chartEasingFn = mina.easeout,
+        chartEasingFn = mina.easeinout,
         chartTimeout = 500,
         animationComplete = false;
 
@@ -150,32 +149,44 @@
             var tracedPath = rootChartSvg.path(tracedPathConfig),
                 currentPoint = 0;
 
+            function dotReveal( el ){
+                el.attr({
+                    strokeWidth: 0,
+                    stroke: "rgba(0,0,0,0)", // makes the actual path invisible.
+                    fill: 0,
+                    fillOpacity: 0,
+                });
+
+                el.animate(
+                    visiblePoint,
+                    1000,
+                    mina.elastic
+                );
+            };
+
             Snap.animate(0, pathLength, function( step ){
-                    if ( step < 0.008) {
-                        console.log('step!!', step);
-                        points.point1.attr(visiblePoint);
-                    }
-                    if ( step > 50 && step < 51) {
-                        console.log('step!!', step);
-                        points.point2.attr(visiblePoint);
-                    }
-                    if ( step > 109 && step < 111) {
-                        console.log('step!!', step);
-                        points.point3.attr(visiblePoint);
-                    }
-                    if ( step > 163 && step < 165) {
-                        console.log('step!!', step);
-                        points.point4.attr(visiblePoint);
-                    }
-                    if ( step > 217 && step < 218) {
-                        console.log('step!!', step);
-                        points.point5.attr(visiblePoint);
-                    }
-                    if ( step >=  272 ) {
-                        console.log('step!!', step);
-                        
-                    }
+         
                     // console.log('step = ', step);
+         
+                    switch ( true ) {
+                        case ( step < 0.008 ):
+                            dotReveal( points.point1 );
+                            break;
+                        case ( step > 50 && step < 51 ):
+                            dotReveal( points.point2 );
+                            break;
+                        case ( step > 109 && step < 111 ):
+                            dotReveal( points.point3 );
+                            break;
+                        case ( step > 163 && step < 165 ):
+                            dotReveal( points.point4 );
+                            break;
+                        case ( step > 217 && step < 218 ):
+                            dotReveal( points.point5 );
+                            break;
+                        default:
+                            break;
+                    }
 
                     var stepPoint = el.getPointAtLength( step );
                     // console.log('stepPoint = ', stepPoint);
@@ -185,11 +196,11 @@
                         strokeWidth: 6,
                     });
                 },
-                4575, //duration
+                4500, //duration
                 mina.easeout, //easing
                 function(){
                     console.log('anim done!');
-                    points.point5.attr(visiblePoint);
+                    // points.point5.attr(visiblePoint);
                 }
             );
         }

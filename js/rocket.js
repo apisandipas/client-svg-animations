@@ -1,10 +1,10 @@
-(function(window, $, Snap){
+;(function(window, $, Snap){
     'use strict';
  
 
     $(function(){
 
-        // these selectors are used to detect when theyre els are 'inview'
+         // jQuery reference to root SVG element
         var $rocketEl = $('#rocket-rocket');
         var $gearsEl = $('#gears');
 
