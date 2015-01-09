@@ -6,7 +6,6 @@
 
          // jQuery reference to root SVG element
         var $rocketEl = $('#rocket-rocket');
-        var $gearsEl = $('#gears');
 
         // the selectors are used to reference parts of the illustration as Snap objects.
         var rootRocketSvg = Snap('#rocket-svg'),
@@ -19,7 +18,7 @@
             flames  = rocket.select('#rocket-flames')
         ;
 
-        cloudGroup.attr({'fill': '#fff'});
+        // cloudGroup.attr({'fill': '#fff'});
         
         // bind each to it's handler function
         $rocketEl.bind('inview', function(event, visible){
@@ -36,14 +35,7 @@
               }
         });
 
-        $gearsEl.bind('inview', function(event, visible){
-             if (visible == true) {
-               
-              } else {
-                
-              }
-        });
-
+      
         function rocketAnimation(){
             var rocketEasingFn = mina.easeinquint;
             var rocketTimeout = 3000;

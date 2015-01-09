@@ -2,10 +2,6 @@
     'use strict';
 
 
-
-    
-
-
     $(function(){
 
    
@@ -30,20 +26,6 @@
             devicesTimeout  = 2000
 
         ;
-
-        //  wait for the phone element to come into view (or miss it's animation entirely...)
-        // $rootPhoneEl.bind('inview', function(event, visible){
-        //     if (visible == true) {
-
-        //        console.log('devices in view');
-
-              
-        //     } else {
-        //         console.log('devices not in view');
-        //        clearScreen();
-        //     }
-        // });
-
 
 
         var animatePhoneContent = function(){
@@ -88,9 +70,7 @@
                     },
                     indexCached,
                     mina.elastic//,
-                    // animateLaptopContent
                 );
-                // console.log(indexCached);
             });
 
         };
@@ -99,8 +79,8 @@
         var animateLaptopContent = function(){
 
            
-             // clearScreen();
-             // drawScreen();
+             clearScreen();
+             drawScreen();
 
              setInterval(function(){
 

@@ -4,9 +4,9 @@
     $(function(){
 
          // jQuery reference to root SVG element
-        var $chartEl = $('#chart-svg');
+        var $chartEl = $('#chart');
 
-        var rootChartSvg = Snap('#chart-svg'),
+        var rootChartSvg = Snap('#chart'),
         bars = {
             bar1: rootChartSvg.select('#bar-1'),
             bar2: rootChartSvg.select('#bar-2'),
@@ -26,13 +26,13 @@
         lineChartLine = rootChartSvg.select('#line-chart-line'),
 
         delays = [
-            0,
-            500,
+            100,
             1000,
-            1500,
             2000,
+            2800,
+            3300,
         ],
-        chartEasingFn = mina.easeinout,
+        chartEasingFn = mina.linear,
         chartTimeout = 500,
         animationComplete = false;
 
@@ -102,7 +102,7 @@
 
 
         function animateLineGraph(){
-            console.log('animateLineGraph fired');
+            // console.log('animateLineGraph fired');
             animateLine( lineChartLine );
         }
 
@@ -136,7 +136,7 @@
                 "transform": "translate(23,28)"
             };
 
-            console.log('pathLength = ', pathLength);
+            // console.log('pathLength = ', pathLength);
 
             var visiblePoint = {
                 strokeWidth: 1,
@@ -181,7 +181,7 @@
                         case ( step > 163 && step < 165 ):
                             dotReveal( points.point4 );
                             break;
-                        case ( step > 217 && step < 218 ):
+                        case ( step > 215 && step < 220 ):
                             dotReveal( points.point5 );
                             break;
                         default:
@@ -197,11 +197,7 @@
                     });
                 },
                 4500, //duration
-                mina.easeout, //easing
-                function(){
-                    console.log('anim done!');
-                    // points.point5.attr(visiblePoint);
-                }
+                mina.easeout//, //easing
             );
         }
     });
